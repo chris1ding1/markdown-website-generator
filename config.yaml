@@ -1,0 +1,25 @@
+site:
+  url: ""
+  name: ""
+  author: ""
+  locale: "en"
+  keywords:
+    - Keyword1
+    - Keyword2
+  description: "description"
+  social:
+    x: ""
+    instagram: ""
+    github: ""
+    linkedin: ""
+
+paths:
+  content: "content"
+  output: "dist"
+  public: "public"
+
+projects:
+  - name: ""
+    description: ""
+    link: ""
+    icon: ""
