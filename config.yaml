@@ -17,6 +17,7 @@ paths:
   content: "content"
   output: "dist"
   public: "public"
+  drafts: "draft"
 
 projects:
   - name: ""

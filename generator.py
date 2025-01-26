@@ -43,6 +43,7 @@ class MarkdownSiteGenerator:
 
         content_dir = Path(self.config['paths']['content'])
         output_dir = Path(self.config['paths']['output'])
+        drafts_dir = content_dir / self.config['paths']['drafts']
 
         # Clean and create output directory
         if output_dir.exists():
@@ -56,6 +57,11 @@ class MarkdownSiteGenerator:
         # Process all posts
         posts = []
         for md_file in content_dir.rglob("*.md"):
+            # Skip draft files
+            if drafts_dir in md_file.parents:  #
+                print(f"Skipping draft: {md_file.relative_to(content_dir)}")
+                continue
+
             # Process post data.
             post_data = self.build_post_data(md_file)
             posts.append(post_data)
