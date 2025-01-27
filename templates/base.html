@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
+    <meta name="author" content="{{ site.author }}" />
     <meta name="description" content="{% if page and page.description %}{{ page.description }}{% else %}{{ site.description|default('') }}{% endif %}" />
     <meta name="keywords" content="{% if page and page.keywords %}{{ page.keywords|join(', ') }}{% else %}{{ site.keywords|join(', ') }}{% endif %}" />
     <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ site.name }}</title>
