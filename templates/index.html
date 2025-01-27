@@ -2,3 +2,14 @@
 
 {% block content %}
 {% endblock %}
+
+{% block head %}
+<script type="application/ld+json">
+    {
+      "@context" : "https://schema.org",
+      "@type" : "WebSite",
+      "name" : "{{ site.name }}",
+      "url" : "{{ site.url }}"
+    }
+</script>
+{% endblock %}
