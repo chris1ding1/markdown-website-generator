@@ -9,6 +9,7 @@
     <meta name="keywords" content="{% if page and page.keywords %}{{ page.keywords|join(', ') }}{% else %}{{ site.keywords|join(', ') }}{% endif %}" />
     <title>{% if page and page.title %}{{ page.title }} - {% endif %}{{ site.name }}</title>
     <link rel="shortcut icon" href="/favicon.ico">
+    {% block head %}{% endblock %}
   </head>
   <body>
     {% block content %}{% endblock %}
