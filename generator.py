@@ -109,7 +109,7 @@ class MarkdownSiteGenerator:
         lang = lang_parts[-1] if len(lang_parts) > 1 else self.config['site'].get('locale', 'en')
 
         # Load post.md content
-        post = frontmatter.load(str(file_path))
+        post = frontmatter.load(str(file_path), disable_yaml_loader=True)
 
         # Convert markdown to html
         html_content = self.md.convert(post.content)
