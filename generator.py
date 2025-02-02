@@ -142,12 +142,13 @@ class MarkdownSiteGenerator:
     def generate_index(self, posts: list, output_dir: Path):
         """Generate index page"""
 
+        sort_by = self.config['site'].get('sort_by')
         template = self.jinja_env.get_template('index.html')
         html = template.render(
             site={
                 **self.config['site']
             },
-            posts=sorted(posts, key=lambda x: x['updated'] or '', reverse=True)
+            posts=sorted(posts, key=lambda x: x[sort_by] or '', reverse=True)
         )
 
         output_file = output_dir / 'index.html'

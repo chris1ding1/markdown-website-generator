@@ -7,6 +7,7 @@ site:
     - Keyword1
     - Keyword2
   description: "description"
+  sort_by: "created"
   social:
     x: ""
     instagram: ""
