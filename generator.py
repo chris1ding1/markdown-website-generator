@@ -128,6 +128,22 @@ class MarkdownSiteGenerator:
             slug_source = self.config['name'].get('name', 'untitled')
         slug = slugify(slug_source)
 
+        schema_article = {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": title,
+        }
+
+        author = []
+        if self.config['site'].get('author', ''):
+            author.append({
+                "@type": "Person",
+                "name": self.config['site']['author']
+            })
+
+        if author:
+            schema_article['author'] = author
+
         return {
             'content': html_content,
             'title': title,
@@ -137,7 +153,8 @@ class MarkdownSiteGenerator:
             'file_path': f"/posts/{slug}.html",
             'lang': lang,
             'description': post.metadata.get('description', ''),
-            'keywords': post.metadata.get('keywords', [])
+            'keywords': post.metadata.get('keywords', []),
+            'schema_article': json.dumps(schema_article, ensure_ascii=False)
         }
 
     def generate_index(self, posts: list, output_dir: Path):
