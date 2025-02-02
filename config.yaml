@@ -4,6 +4,7 @@ site:
   alternate_name:
   author: ""
   locale: "en"
+  time_zone: ""
   keywords:
     - Keyword1
     - Keyword2
