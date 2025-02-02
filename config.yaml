@@ -1,6 +1,7 @@
 site:
   url: ""
   name: ""
+  alternate_name:
   author: ""
   locale: "en"
   keywords:

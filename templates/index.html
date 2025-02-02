@@ -4,12 +4,9 @@
 {% endblock %}
 
 {% block head %}
+{% if schema_site_name %}
 <script type="application/ld+json">
-    {
-      "@context" : "https://schema.org",
-      "@type" : "WebSite",
-      "name" : "{{ site.name }}",
-      "url" : "{{ site.url }}"
-    }
+    {{ schema_site_name | safe }}
 </script>
+{% endif %}
 {% endblock %}

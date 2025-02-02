@@ -11,6 +11,7 @@ import frontmatter
 import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader
+import json
 from slugify import slugify
 
 class MarkdownSiteGenerator:
@@ -157,7 +158,8 @@ class MarkdownSiteGenerator:
             site={
                 **self.config['site']
             },
-            posts=sorted_posts
+            posts=sorted_posts,
+            schema_site_name=self.generate_schema_site_name()
         )
 
         output_file = output_dir / 'index.html'
@@ -218,6 +220,24 @@ class MarkdownSiteGenerator:
             ET.tostring(urlset, encoding='utf-8')
         ).toprettyxml(indent='  ', encoding='utf-8')
         output_file.write_bytes(xml_str)
+
+    def generate_schema_site_name(self):
+        """Generate schema site name"""
+        site_name = self.config['site'].get('name').strip()
+        site_url = self.config['site'].get('url').strip()
+
+        if site_name and site_url:
+            schema_site_name = {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "name": site_name,
+            }
+            site_alternate_name = self.config['site'].get('alternate_name')
+            if site_alternate_name:
+                schema_site_name["alternateName"] = site_alternate_name
+            schema_site_name["url"] = site_url.rstrip('/') + '/'
+            return json.dumps(schema_site_name, ensure_ascii=False)
+        return None
 
     def copy_public_files(self):
         """Copy static files"""
