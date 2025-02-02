@@ -203,17 +203,12 @@ class MarkdownSiteGenerator:
         loc = ET.SubElement(url, 'loc')
         loc.text = self.config['site']['url'] + '/about'
 
-        # Create ElementTree object
-        tree = ET.ElementTree(urlset)
-
         # Write to file, add XML declaration and correct indentation
         output_file = output_dir / 'sitemap.xml'
-        with output_file.open('wb') as f:
-            tree.write(f, encoding='utf-8', xml_declaration=True)
-
-        # Pretty XML output
-        xml_str = minidom.parse(str(output_file)).toprettyxml(indent='  ')
-        output_file.write_text(xml_str, encoding='utf-8')
+        xml_str = minidom.parseString(
+            ET.tostring(urlset, encoding='utf-8')
+        ).toprettyxml(indent='  ', encoding='utf-8')
+        output_file.write_bytes(xml_str)
 
     def copy_public_files(self):
         """Copy static files"""
