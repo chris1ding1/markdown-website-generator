@@ -1,16 +1,21 @@
-# A Python static site generator that converts Markdown files to HTML websites
+# md2go
 
-## Usage
+[![PyPI - Version](https://img.shields.io/pypi/v/md2go.svg)](https://pypi.org/project/md2go)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/md2go.svg)](https://pypi.org/project/md2go)
 
-`python3 generator.py`
+-----
 
-## Cloudflare Pages Deployment
+## Table of Contents
 
-### Build Settings
+- [Installation](#installation)
+- [License](#license)
 
-- Build command: `chmod +x build.sh && ./build.sh`
-- Build output directory: `dist`
+## Installation
 
-## Contact
+```console
+pip install md2go
+```
 
-[X](https://x.com/chris1ding1)
+## License
+
+`md2go` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.

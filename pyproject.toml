@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "md2go"
+dynamic = ["version"]
+description = 'Convert Markdown to HTML'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = ["Markdown", "md2go", 'HTML']
+authors = [
+  { name = "chris", email = "chris1ding1@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/chris1ding1/md2go#readme"
+Issues = "https://github.com/chris1ding1/md2go/issues"
+Source = "https://github.com/chris1ding1/md2go"
+
+[tool.hatch.version]
+path = "src/md2go/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/md2go tests}"
+
+[tool.coverage.run]
+source_pkgs = ["md2go", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/md2go/__about__.py",
+]
+
+[tool.coverage.paths]
+md2go = ["src/md2go", "*/md2go/src/md2go"]
+tests = ["tests", "*/md2go/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
